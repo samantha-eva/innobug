@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Statut;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 
 class StatutCrudController extends AbstractCrudController
 {
@@ -12,14 +13,18 @@ class StatutCrudController extends AbstractCrudController
         return Statut::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            ChoiceField::new('libelle')
+            -> setChoices ([ 
+                ' A FAIRE '  =>  ' A FAIRE ' ,
+                ' EN COURS '  =>  ' EN COURS ' ,
+                ' TERMINER'      =>   'TERMINER'
+               ]),
+               
         ];
     }
-    */
+    
 }

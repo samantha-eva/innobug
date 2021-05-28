@@ -17,7 +17,7 @@ use App\Entity\Rapport;
 use App\Entity\Bug;
 use App\Entity\NiveauBug;
 use App\Entity\Statut;
-
+use App\Entity\PieceJointe;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -47,5 +47,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('bug', 'fas fa-list', Bug::class);
         yield MenuItem::linkToCrud('Niveau', 'fas fa-list', NiveauBug::class);
         yield MenuItem::linkToCrud('Statut', 'fas fa-list', Statut::class);
+        yield MenuItem::linkToCrud('Piece Jointe', 'fas fa-list', PieceJointe::class);
     }
 }

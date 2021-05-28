@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 /**
  * PieceJointe
  *
  * @ORM\Table(name="piece_jointe", indexes={@ORM\Index(name="idRapport", columns={"idRapport"})})
  * @ORM\Entity
+ * @Vich\Uploadable
  */
 class PieceJointe
 {
@@ -42,6 +44,13 @@ class PieceJointe
      */
     private $idrapport;
 
+    /**
+     * @Vich\UploadableField(mapping="pieceJointe", fileNameProperty="urlPj")
+     * @var File
+     */
+    private $pieceJointeFile;
+
+
     public function getIdpj(): ?int
     {
         return $this->idpj;
@@ -70,6 +79,21 @@ class PieceJointe
 
         return $this;
     }
+
+    public function setPieceJointeFile( $pieceJointeFile): self
+    {
+        $this->pieceJointeFile = $pieceJointeFile;
+
+        return $this;
+       
+
+    }
+
+    public function getPieceJointeFile()
+    {
+        return $this->pieceJointeFile;
+    }
+
 
     public function getIdrapport(): ?int
     {
