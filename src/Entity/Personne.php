@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="types", type="string")
- * @ORM\DiscriminatorMap({"debugeur" = "Debugeur", "developpeur"= "Developpeur","client"= "Client"})
+ * @ORM\DiscriminatorMap({"debugeur" = "Debugeur", "developpeur"= "Developpeur","client"= "Client" })
  */
 abstract class Personne implements UserInterface
 {
@@ -59,6 +59,11 @@ abstract class Personne implements UserInterface
      * @ORM\Column(name="telephone", type="integer", nullable=true)
      */
     protected $telephone;
+
+    /** 
+     * @ORM\Column(type="json") 
+     */
+    protected $roles = [];
 
    
 
@@ -127,12 +132,29 @@ abstract class Personne implements UserInterface
         return $this;
     }
 
-    public function getRoles()
+    // public function getRoles()
+    // {
+    //     return[
+    //         'ROLE_USER'
+    //     ];
+    // }
+
+    public function getRoles(): array
     {
-        return[
-            'ROLE_USER'
-        ];
+        $roles = $this->roles;
+
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
   
     public function getSalt() {}
 

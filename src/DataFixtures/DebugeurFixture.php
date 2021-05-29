@@ -27,6 +27,8 @@ class DebugeurFixture extends Fixture
         $debugeur->setAdresse('20 rue du soleil');
         $debugeur->setTelephone('0140328896');
         $debugeur->setStatut('ROLE_APPRENTIE');
+        $debugeur->setRoles(array('ROLE_USER'));
+
         
         $manager->persist($debugeur);
         $manager->flush();
@@ -40,6 +42,7 @@ class DebugeurFixture extends Fixture
         $debugeur2->setAdresse('20 rue aubervilliers');
         $debugeur2->setTelephone('0140328897');
         $debugeur2->setStatut('ROLE_STAGIAIRE');
+        $debugeur2->setRoles(array('ROLE_USER'));
         
         $manager->persist($debugeur2);
         $manager->flush();
