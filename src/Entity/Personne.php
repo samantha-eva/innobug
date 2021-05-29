@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Personne
@@ -10,10 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="personne")
  * @ORM\Entity
  * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="roles", type="string")
+ * @ORM\DiscriminatorColumn(name="types", type="string")
  * @ORM\DiscriminatorMap({"debugeur" = "Debugeur", "developpeur"= "Developpeur","client"= "Client"})
  */
-abstract class Personne
+abstract class Personne implements UserInterface
 {
     /**
      * @var int
@@ -27,9 +28,9 @@ abstract class Personne
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=50, nullable=false)
+     * @ORM\Column(name="username", type="string", length=50, nullable=false)
      */
-    protected $nom;
+    protected $username;
 
     /**
      * @var string|null
@@ -41,7 +42,7 @@ abstract class Personne
     /**
      * @var string|null
      *
-     * @ORM\Column(name="password", type="string", length=50, nullable=true)
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
      */
     protected $password;
 
@@ -66,14 +67,14 @@ abstract class Personne
         return $this->idpersonne;
     }
 
-    public function getNom(): ?string
+    public function getUsername(): ?string
     {
-        return $this->nom;
+        return $this->username;
     }
 
-    public function setNom(string $nom): self
+    public function setUsername(string $username): self
     {
-        $this->nom = $nom;
+        $this->username = $username;
 
         return $this;
     }
@@ -125,6 +126,17 @@ abstract class Personne
 
         return $this;
     }
+
+    public function getRoles()
+    {
+        return[
+            'ROLE_USER'
+        ];
+    }
+  
+    public function getSalt() {}
+
+    public function eraseCredentials() {}
 
 
 }
