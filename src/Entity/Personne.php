@@ -143,7 +143,7 @@ abstract class Personne implements UserInterface
     {
         $roles = $this->roles;
 
-        $roles[] = 'ROLE_USER';
+        //$roles[] = 'ROLE_ADMIN';
 
         return array_unique($roles);
     }

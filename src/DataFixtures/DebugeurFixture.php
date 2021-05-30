@@ -46,5 +46,35 @@ class DebugeurFixture extends Fixture
         
         $manager->persist($debugeur2);
         $manager->flush();
+
+        $debugeur3 = new Debugeur();
+        $debugeur3->setUsername('marcel');
+        $debugeur3->setPassword(
+            $this->encoder->encodePassword($debugeur3, 'test')
+        );
+
+        $debugeur3->setEmail('bragance@innobug.fr');
+        $debugeur3->setAdresse('20 rue du paradis ');
+        $debugeur3->setTelephone('0140328797');
+        $debugeur3->setStatut('ROLE_STAGIAIRE');
+        $debugeur3->setRoles(array('ROLE_ADMIN'));
+        
+        $manager->persist($debugeur3);
+        $manager->flush();
+
+        $debugeur4 = new Debugeur();
+        $debugeur4->setUsername('admin');
+        $debugeur4->setPassword(
+            $this->encoder->encodePassword($debugeur4, 'test')
+        );
+
+        $debugeur4->setEmail('admin@innobug.fr');
+        $debugeur4->setAdresse('20 rue admin ');
+        $debugeur4->setTelephone('0140328797');
+        $debugeur4->setStatut('ROLE_APPRENTIE');
+        $debugeur4->setRoles(array('ROLE_ADMIN'));
+        
+        $manager->persist($debugeur4);
+        $manager->flush();
     }
 }

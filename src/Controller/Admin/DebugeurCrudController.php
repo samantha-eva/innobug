@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 
 class DebugeurCrudController extends AbstractCrudController
 {
@@ -22,7 +23,7 @@ class DebugeurCrudController extends AbstractCrudController
     {
         return [
           
-            Field::new('nom'),
+            Field::new('username'),
             EmailField::new('email'),
             Field::new('adresse'),
             TelephoneField::new('telephone'),
@@ -33,8 +34,12 @@ class DebugeurCrudController extends AbstractCrudController
                 ' STAGIAIRE '  =>  ' ROLE_STAGIARE ' ,
                 'SALARIÉ'      =>   'ROLE_SALARIÉ'
                ]),
+
+               ArrayField::new('roles')
                
         ];
+
+       
     }
     
 }

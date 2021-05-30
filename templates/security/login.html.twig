@@ -11,16 +11,20 @@
 
 <div class="example-wrapper">
 <a href="{{ path('logout') }}">Logout</a>
+
     <h1>Login Page ✅</h1>
     {% if error %}
         <span class="error">{{ error.messageKey }}</span>
     {% endif %}
-  
+
+   
     <form action="{{ path('login') }}" method="POST">
         <input type="text" name="_username" value="{{ last_username }}" palceholder="Username ....">
         <input type="password" name="_password" >
 
         <button type="submit">login</button>
     </form>
+
+  
 </div>
 {% endblock %}
